@@ -1,6 +1,7 @@
 package com.reddyclinic.doctorportal.service;
 
 import com.reddyclinic.doctorportal.dto.LoginRequest;
+import com.reddyclinic.doctorportal.entity.Role;
 import com.reddyclinic.doctorportal.entity.User;
 import com.reddyclinic.doctorportal.exception.InvalidCredentialException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 
 
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
     public class AuthService {
@@ -50,13 +51,16 @@ import java.util.Optional;
             User user = optionalUser.get();
 
             // Generate JWT token
-            String token = generateToken(user.getEmail());
+            String token = generateToken(user.getEmail(),user.getRoles());
             return new LoginResponse(user.getName(), user.getId(),user.getEmail(), token);
         }
 
-        private String generateToken(String email) {
+        private String generateToken(String email, Set<Role> roles) {
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("roles",roles.stream().map(Role::getRoleName).collect(Collectors.toList()));
             return Jwts.builder()
                     .setSubject(email)
+//                    .setClaims(claims)
                     .setIssuedAt(new Date())
                     .setExpiration(new Date(System.currentTimeMillis() + 86400000)) // 1-day validity
                     .signWith(getSigningKey(), SignatureAlgorithm.HS512)

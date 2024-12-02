@@ -5,6 +5,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
@@ -16,8 +17,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/users/register","/api/users/login").permitAll()
                         // Allow public access for registration
                         .anyRequest().authenticated()  // Secure the rest of the API
-                );
+                )            .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class); // Add JWT filter
         return http.build();
+
     }
 
     @Bean

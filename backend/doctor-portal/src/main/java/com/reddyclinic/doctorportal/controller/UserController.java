@@ -1,7 +1,5 @@
 package com.reddyclinic.doctorportal.controller;
 
-
-
 import com.reddyclinic.doctorportal.dto.*;
 import com.reddyclinic.doctorportal.service.AuthService;
 import com.reddyclinic.doctorportal.service.UserService;

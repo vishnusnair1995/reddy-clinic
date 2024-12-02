@@ -45,4 +45,11 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         return userMapper.toDTO(user);
     }
+    public void deleteUserById(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new ResourceNotFoundException("User not found with ID: " + id);
+        }
+        userRepository.deleteById(id);
+    }
+
 }
