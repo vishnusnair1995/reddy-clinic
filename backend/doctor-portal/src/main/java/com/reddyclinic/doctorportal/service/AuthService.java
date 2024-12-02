@@ -51,7 +51,7 @@ import java.util.Optional;
 
             // Generate JWT token
             String token = generateToken(user.getEmail());
-            return new LoginResponse(user.getName(), user.getUserId(),user.getEmail(), token);
+            return new LoginResponse(user.getName(), user.getId(),user.getEmail(), token);
         }
 
         private String generateToken(String email) {

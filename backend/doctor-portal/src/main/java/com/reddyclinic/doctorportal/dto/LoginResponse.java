@@ -17,7 +17,7 @@ public class LoginResponse {
     private String email;           // The user's email address
     private String token;           // The JWT or authentication token
     private Instant tokenExpiry;    // Expiration timestamp of the token
-    private String role;// Role of the user (e.g., admin, user)
+    private String role;// Role.java of the user (e.g., admin, user)
 
     public LoginResponse(String name, Long userId, String email, String token) {
         this.name = name;
