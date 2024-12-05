@@ -1,4 +1,4 @@
-package com.reddyclinic.doctorportal.config;
+package com.reddyclinic.doctorportal.filter;
 
 
 import io.jsonwebtoken.Claims;
@@ -12,12 +12,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 import java.util.ArrayList;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.security.Key;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
@@ -43,10 +47,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         .parseClaimsJws(token)
                         .getBody();
                 String username = claims.getSubject();  // Retrieve the user's email (subject)
+                List<String> roles = (List<String>)claims.get("roles");
 
-                if (username != null) {
+                if (username != null && roles != null) {
+                    List<GrantedAuthority> grantedAuthorityList = roles.stream().map(role-> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList());
                     // Set the user details in the security context
-                    Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
+                    Authentication authentication = new UsernamePasswordAuthenticationToken(username, null,grantedAuthorityList);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             } catch (JwtException | IllegalArgumentException e) {

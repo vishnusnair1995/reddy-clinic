@@ -59,8 +59,8 @@ import java.util.stream.Collectors;
             Map<String, Object> claims = new HashMap<>();
             claims.put("roles",roles.stream().map(Role::getRoleName).collect(Collectors.toList()));
             return Jwts.builder()
+                    .setClaims(claims)
                     .setSubject(email)
-//                    .setClaims(claims)
                     .setIssuedAt(new Date())
                     .setExpiration(new Date(System.currentTimeMillis() + 86400000)) // 1-day validity
                     .signWith(getSigningKey(), SignatureAlgorithm.HS512)
