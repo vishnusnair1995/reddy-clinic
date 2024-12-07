@@ -16,7 +16,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
-import java.util.ArrayList;
+
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.security.Key;
@@ -47,12 +47,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         .parseClaimsJws(token)
                         .getBody();
                 String username = claims.getSubject();  // Retrieve the user's email (subject)
-                List<String> roles = (List<String>)claims.get("roles");
+                List<String> roles = (List<String>) claims.get("roles");
 
                 if (username != null && roles != null) {
-                    List<GrantedAuthority> grantedAuthorityList = roles.stream().map(role-> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList());
+                    List<GrantedAuthority> grantedAuthorityList = roles.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList());
                     // Set the user details in the security context
-                    Authentication authentication = new UsernamePasswordAuthenticationToken(username, null,grantedAuthorityList);
+                    Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, grantedAuthorityList);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             } catch (JwtException | IllegalArgumentException e) {
