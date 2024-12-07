@@ -1,0 +1,14 @@
+The Spring Expression Language (SpEL) is a powerful tool for dynamically querying and manipulating
+ object graphs at runtime in a Spring application. It is widely used in configurations like
+  @PreAuthorize to enforce dynamic role-based access control, referencing constants, and more.
+
+What does T(...) mean in SpEL?
+The T operator in SpEL allows you to access types (classes) to reference their static methods, fields, or
+ constants. For example:
+
+java
+Copy code
+@PreAuthorize("hasRole(T(com.reddyclinic.doctorportal.config.RoleConstants).ROLE_ADMIN)")
+T(...): Refers to the RoleConstants class at runtime.
+.ROLE_ADMIN: Accesses the ROLE_ADMIN constant defined in the RoleConstants class.
+Usage in hasRole: This dynamically checks if the currently authenticated user has the role "ROLE_ADMIN".

@@ -1,0 +1,38 @@
+Stateless vs Stateful Systems in Web Applications
+Stateless
+In a stateless system, each request is independent, meaning the server doesn't store any
+ session data between requests. Each request must contain all the information needed to process
+  it (e.g., user credentials or authentication tokens). This is commonly seen in REST APIs using JWTs (JSON Web Tokens). Since the server doesn't track the user's state, it can scale easily.
+
+Example: A user sends a request with a JWT to authenticate, and the server validates it without needing to
+store any session information between requests.
+Stateful
+In a stateful system, the server stores session data about the user between requests, often in the form of
+session IDs stored in cookies. This means the server "remembers" the user’s state across different requests,
+ which can make it easier to handle things like user sessions and preferences but can be less scalable.
+
+Example: When a user logs in, a session ID is created and stored in a cookie. This session ID is sent with
+each request, and the server uses it to retrieve the user's session data.
+Key Differences:
+Scalability: Stateless systems can handle a larger volume of traffic without tracking session data, making
+them easier to scale horizontally.
+Security: Stateful systems require careful management of session data (e.g., sessions can be hijacked),
+while stateless systems reduce this risk by avoiding server-side session storage.
+Performance: Stateless systems are often faster because they don’t require retrieving session data for
+every request.
+
+
+
+
+Disabling CSRF (Cross-Site Request Forgery) is common when using JWT (JSON Web Tokens) because
+ JWT itself handles authentication. CSRF protection is typically used in session-based authentication systems to prevent
+ malicious websites from performing actions on behalf of authenticated users. However, in stateless JWT-based systems, where each request contains its own token
+ for authentication, CSRF protection is not needed, as each request is already authenticated by the token rather than relying on the browser's session.
+
+CSRF (Cross-Site Request Forgery) is a type of attack where a malicious user tricks a victim into performing
+ unwanted actions on a web application where the victim is
+authenticated. CSRF protection typically uses tokens to ensure that requests are coming from the correct user, not an attacker.
+
+However, in stateless systems (like those using JWTs), since each request contains its own authentication
+token (usually in the headers), there's no need for CSRF protection, because the server doesn't rely on
+cookies for user verification.

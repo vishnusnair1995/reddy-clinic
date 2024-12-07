@@ -13,18 +13,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    private AuthService authService;
+    public UserController(UserService userService, AuthService authService) {
+        this.userService = userService;
+        this.authService = authService;
+    }
+
+    private final AuthService authService;
 
     @PostMapping("/register")
     public ResponseEntity<UserResponse> registerUser(@Valid @RequestBody UserCreateRequest request) {
         UserResponse userResponse = userService.registerUser(request);
         return ResponseEntity.ok(userResponse);
     }
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole(T(com.reddyclinic.doctorportal.util.RoleConstants).ROLE_USER)")
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
         UserDTO userDTO = userService.getUserById(id);
