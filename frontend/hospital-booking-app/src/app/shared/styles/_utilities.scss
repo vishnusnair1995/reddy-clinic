@@ -1,0 +1,36 @@
+@use './variables' as vars;
+
+/* ===== Flex Utilities ===== */
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+/* ===== Spacing Utilities ===== */
+
+.small-gap {
+  gap: 10px;
+}
+
+/* ===== Text Utilities ===== */
+
+.small-muted {
+  color: vars.$color-muted-2;
+  font-size: 13px;
+}
+
+.link {
+  color: vars.$link-color;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

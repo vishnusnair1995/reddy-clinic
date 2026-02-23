@@ -1,0 +1,25 @@
+@use '../foundation/colors' as c;
+@use '../foundation/radius' as r;
+@use '../foundation/elevation' as e;
+
+// Text
+$text-primary: c.$color-gray-900;
+$text-secondary: c.$color-gray-500;
+
+// Background
+$bg-page: c.$color-white;
+$bg-muted: c.$color-gray-100;
+
+// Borders
+$border-default: c.$color-gray-300;
+
+// Buttons
+$btn-primary-bg: c.$color-primary-600;
+$btn-primary-bg-hover: c.$color-primary-700;
+$btn-primary-text: c.$color-white;
+
+// Radius
+$radius-control: r.$radius-md;
+
+// Elevation
+$shadow-card: e.$elevation-2;

@@ -1,0 +1,30 @@
+@use './variables' as vars;
+@use './mixins' as mixins;
+
+/* =========================================
+   Primary Gradient Button
+========================================= */
+
+.ds-btn-primary {
+  @include mixins.gradient-button(
+    vars.$success-start,
+    vars.$success-end,
+    52px,
+    vars.$radius-md
+  );
+
+  margin: 6px 0 18px 0;
+  box-shadow: vars.$shadow-strong;
+
+  mat-icon {
+    color: white;
+  }
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}

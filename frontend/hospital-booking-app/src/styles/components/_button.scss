@@ -1,0 +1,5 @@
+@use '../mixins/buttons' as btn;
+
+.ds-btn-primary {
+  @include btn.button-primary;
+}

@@ -1,0 +1,14 @@
+@use '../tokens/semantic' as sem;
+
+.ds-form {
+  max-width: 440px;
+
+  .ds-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  mat-form-field {
+    --mdc-outlined-text-field-container-shape: #{sem.$radius-control};
+  }
+}

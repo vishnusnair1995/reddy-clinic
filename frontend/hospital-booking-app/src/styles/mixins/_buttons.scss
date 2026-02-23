@@ -1,0 +1,17 @@
+@use '../tokens/semantic' as sem;
+
+@mixin button-primary {
+  height: 48px;
+  border-radius: sem.$radius-control;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.2px;
+  box-shadow: none;
+
+  --mdc-filled-button-container-color: #{sem.$btn-primary-bg};
+  --mdc-filled-button-label-text-color: #{sem.$btn-primary-text};
+
+  &:hover {
+    --mdc-filled-button-container-color: #{sem.$btn-primary-bg-hover};
+  }
+}

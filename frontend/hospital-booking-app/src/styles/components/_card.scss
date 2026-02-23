@@ -1,0 +1,8 @@
+@use '../tokens/semantic' as sem;
+
+.ds-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: sem.$shadow-card;
+  padding: 24px;
+}
