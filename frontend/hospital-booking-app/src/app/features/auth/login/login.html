@@ -1,1 +1,90 @@
-<p>login works!</p>
+<!-- src/app/features/auth/login/login.component.html -->
+<div class="auth-shell" role="main">
+    <!-- Left column: form -->
+    <div class="auth-left" aria-label="login form">
+      <div class="brand">
+        <div class="brand-pill">
+          <mat-icon>medical_services</mat-icon>
+        </div>
+        <div class="brand-text">Clinic Portal</div>
+      </div>
+  
+      <h1 class="title">Welcome to the Portal</h1>
+      <p class="subtitle">Manage your appointments and records securely</p>
+  
+      <div class="role-toggle">
+        <mat-button-toggle-group appearance="legacy" value="patient" class="toggle-group" [value]="selectedRole">
+          <mat-button-toggle value="patient" (click)="toggleRole('patient')" [class.active]="selectedRole === 'patient'">
+            Patient
+          </mat-button-toggle>
+          <mat-button-toggle value="staff" (click)="toggleRole('staff')" [class.active]="selectedRole === 'staff'">
+            Medical Staff
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+  
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form" novalidate>
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Email or Health ID</mat-label>
+          <input matInput formControlName="identifier" autocomplete="username" placeholder="e.g. john.doe@email.com" />
+          <mat-error *ngIf="loginForm.get('identifier')?.hasError('required')">Required</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="current-password" />
+          <button mat-icon-button matSuffix type="button" [attr.aria-label]="hidePassword ? 'Show password' : 'Hide password'" (click)="hidePassword = !hidePassword">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Required</mat-error>
+        </mat-form-field>
+  
+        <div class="row between small-gap">
+          <mat-checkbox formControlName="remember">Remember me</mat-checkbox>
+          <a class="link" href="#" (click)="$event.preventDefault()">Forgot Password?</a>
+        </div>
+  
+        <div class="otp small-gap">
+          <mat-icon>smartphone</mat-icon>
+          <button mat-button type="button" (click)="$event.preventDefault()">Login via OTP / Mobile Number</button>
+        </div>
+  
+        <button mat-raised-button class="secure-btn" type="submit">
+          Secure Login
+          <mat-icon>east</mat-icon>
+        </button>
+  
+        <div class="divider-row">
+          <mat-divider></mat-divider>
+          <div class="or">Or continue with</div>
+          <mat-divider></mat-divider>
+        </div>
+  
+        <div class="socials">
+          <button mat-stroked-button class="social google" type="button">
+            <img src="/images/google.png" alt="Google" /> Google
+          </button>
+        </div>
+  
+        <div class="legal small-muted">
+          <a href="#" (click)="$event.preventDefault()">Privacy Policy</a>
+          ·
+          <a href="#" (click)="$event.preventDefault()">Terms of Service</a>
+        </div>
+      </form>
+    </div>
+  
+    <!-- Right column: image -->
+    <div class="auth-right" role="complementary" aria-hidden="false">
+      <!-- overlay info card -->
+      <div class="side-info-card" aria-hidden="true">
+        <div class="card-pill"><mat-icon>add</mat-icon></div>
+        <div class="card-content">
+          <div class="card-title">Top-Rated Healthcare</div>
+          <div class="card-sub">Providing world-class medical services for over 25 years.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+

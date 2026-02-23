@@ -1,0 +1,39 @@
+// Shared style variables for the application (colors, spacing, radii, shadows)
+$font-family: "Roboto", "Helvetica", Arial, sans-serif;
+
+// Colors
+$color-heading: #0b1b2b;
+$color-muted: #62727a;
+$color-sub: #6b7a83;
+$color-muted-2: #9aa8ad;
+$link-color: #08907a;
+
+$pill-bg: #e9faf4;
+$pill-color: #008f74;
+
+$bg-surface: #ffffff;
+$muted-bg: #f7faf9;
+$muted-border: rgba(14, 39, 44, 0.05);
+
+$success-start: #10b194;
+$success-end: #09906f;
+$success-gradient: linear-gradient(90deg, #10b194, #09906f);
+$success-gradient-2: linear-gradient(90deg, #12b6a5, #079b84);
+
+// Spacing & sizes
+$space-xs: 6px;
+$space-sm: 12px;
+$space-md: 18px;
+$space-lg: 28px;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 14px;
+
+// Shadows
+$shadow-soft: 0 6px 20px rgba(12, 114, 99, 0.12);
+$shadow-strong: 0 10px 30px rgba(15, 120, 100, 0.12);
+$card-shadow: 0 14px 40px rgba(2, 34, 28, 0.12);
+
+// Misc
+$img-object-size: contain;

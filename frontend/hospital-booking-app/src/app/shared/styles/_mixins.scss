@@ -1,0 +1,20 @@
+// Reusable mixins for layout and buttons
+@mixin center-flex($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin gradient-button($start, $end, $height: 52px, $radius: 12px) {
+  width: 100%;
+  height: $height;
+  background: linear-gradient(90deg, $start, $end);
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: $radius;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}

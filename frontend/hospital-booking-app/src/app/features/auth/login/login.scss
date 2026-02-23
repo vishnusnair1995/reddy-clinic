@@ -1,0 +1,270 @@
+@use '../../../shared/styles/variables' as vars;
+@use '../../../shared/styles/mixins' as mixins;
+
+:host {
+  display: block;
+  height: 100vh;
+  font-family: vars.$font-family;
+  color: vars.$color-heading;
+}
+
+/* Shell: two-column using flexbox */
+.auth-shell {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Left (form) */
+.auth-left {
+  flex: 1 1 520px;
+  max-width: 720px;
+  padding: 48px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: vars.$bg-surface;
+}
+
+/* Right (image) */
+.auth-right {
+  flex: 1 1 50%;
+  background-image: url('/images/login_bg.jpg');
+  /* place your side image here */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 32px;
+}
+
+/* Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+
+  .brand-pill {
+    width: 36px;
+    height: 36px;
+    border-radius: vars.$radius-sm;
+    background: vars.$pill-bg;
+    @include mixins.center-flex();
+    color: vars.$pill-color;
+
+    mat-icon {
+      font-size: 20px;
+    }
+  }
+
+  .brand-text {
+    font-weight: 600;
+    font-size: 16px;
+  }
+}
+
+.title {
+  margin: 0 0 6px 0;
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0 0 24px 0;
+  color: vars.$color-sub;
+}
+
+/* Role toggle (pill) */
+.role-toggle {
+  margin-bottom: vars.$space-md;
+
+  .mat-button-toggle-group {
+    border-radius: vars.$radius-lg;
+    background: vars.$muted-bg;
+    border: 1px solid vars.$muted-border;
+    padding: vars.$space-xs;
+  }
+
+  mat-button-toggle {
+    border-radius: vars.$radius-sm;
+    min-width: 140px;
+
+    &.mat-button-toggle-checked,
+    &.active {
+      background: vars.$success-gradient-2;
+      color: #fff;
+      box-shadow: vars.$shadow-soft;
+    }
+  }
+}
+
+/* Form fields */
+.login-form {
+  max-width: 520px;
+  margin-top: 8px;
+
+  .full {
+    width: 100%;
+    margin-bottom: vars.$space-sm;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.small-gap {
+  gap: 10px;
+}
+
+.link {
+  color: vars.$link-color;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* OTP row */
+.otp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0 18px 0;
+  color: vars.$color-muted;
+
+  mat-icon {
+    font-size: 18px;
+  }
+}
+
+/* Secure button */
+.secure-btn {
+  @include mixins.gradient-button(vars.$success-start, vars.$success-end, 52px, vars.$radius-md);
+  margin: 6px 0 18px 0;
+  box-shadow: vars.$shadow-strong;
+
+  mat-icon {
+    color: white;
+  }
+}
+
+/* Divider row */
+.divider-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: vars.$space-md 0;
+
+  .or {
+    font-size: 13px;
+    color: #8b9aa1;
+    padding: 0 6px;
+  }
+
+  mat-divider {
+    flex: 1;
+    height: 1px;
+  }
+}
+
+/* Social buttons */
+.socials {
+  display: flex;
+  gap: 14px;
+  margin-bottom: vars.$space-md;
+
+  .social {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: vars.$radius-sm;
+    padding: 12px 16px;
+    height: 44px;
+
+    img {
+      height: 20px;
+      width: 20px;
+      object-fit: vars.$img-object-size;
+      vertical-align: middle;
+    }
+  }
+}
+
+/* Side info card on image */
+.side-info-card {
+  position: absolute;
+  left: 56px;
+  bottom: 48px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: vars.$radius-lg;
+  box-shadow: vars.$card-shadow;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 420px;
+
+  .card-pill {
+    width: 44px;
+    height: 44px;
+    background: vars.$pill-bg;
+    border-radius: vars.$radius-md;
+    @include mixins.center-flex();
+    color: vars.$pill-color;
+
+    mat-icon {
+      font-size: 20px;
+    }
+  }
+
+  .card-title {
+    font-weight: 700;
+    color: vars.$color-heading;
+  }
+
+  .card-sub {
+    font-size: 13px;
+    color: vars.$color-muted;
+  }
+}
+
+/* small muted links area */
+.small-muted {
+  color: vars.$color-muted-2;
+  font-size: 13px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 960px) {
+  .auth-shell {
+    flex-direction: column;
+  }
+
+  .auth-left {
+    padding: 28px;
+    max-width: none;
+  }
+
+  .auth-right {
+    height: 40vh;
+    order: -1;
+  }
+
+  .side-info-card {
+    left: 20px;
+    bottom: 18px;
+    max-width: calc(100% - 40px);
+  }
+}
